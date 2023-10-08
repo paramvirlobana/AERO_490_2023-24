@@ -1,0 +1,95 @@
+
+%%% Preamble Requirements %%%
+% \usepackage{geometry}
+% \usepackage{amsfonts}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{tikz}
+
+% Optional packages such as sfmath set through python interface
+% \usepackage{sfmath}
+
+% \usetikzlibrary{arrows,chains,positioning,scopes,shapes.geometric,shapes.misc,shadows}
+
+%%% End Preamble Requirements %%%
+
+\input{"D:/Programs/Anaconda/envs/vsppytools/lib/site-packages/pyxdsm/diagram_styles"}
+\begin{tikzpicture}
+
+\matrix[MatrixSetup]{
+%Row 0
+&
+&
+&
+\node [DataIO,stack] (output_tail_size) {$\begin{array}{c}\text{Tail Config from Baseline} \\ \bar{V}_H, \bar{V}_V, S_{h}, S_{v}, l_{opt},\text{etc}\end{array}$};&
+\node [DataIO,stack] (output_fuse_size) {$\begin{array}{c}\text{Battery Volume} \\ \text{Fuse Config from Baseline} \\ \text{Mission Specific Requirments}\end{array}$};&
+&
+\\
+%Row 1
+\node [Function] (constraint_diagram) {$Constraint \; Diagram$};&
+\node [DataInter] (constraint_diagram-perf_para) {$E_{TO}$};&
+\node [DataInter] (constraint_diagram-ref_wing_des) {$S_{ref}, T, P$};&
+&
+&
+&
+\\
+%Row 2
+&
+\node [Function] (perf_para) {$Performance \; Parameters$};&
+&
+&
+&
+&
+\\
+%Row 3
+&
+&
+\node [Function] (ref_wing_des) {$Refined \; Wing \; Design$};&
+\node [DataInter] (ref_wing_des-tail_size) {$C_{L_{C}}$};&
+&
+&
+\\
+%Row 4
+&
+&
+&
+\node [Function] (tail_size) {$Tail \; Sizing$};&
+&
+&
+\\
+%Row 5
+&
+&
+&
+&
+\node [Function] (fuse_size) {$Fuselage \; Sizing$};&
+&
+\\
+%Row 6
+&
+&
+&
+&
+&
+\node [Function] (UAV_geom) {$UAV \; Configuration$};&
+\\
+};
+
+% XDSM process chains
+
+
+\begin{pgfonlayer}{data}
+\path
+% Horizontal edges
+(constraint_diagram) edge [DataLine] (constraint_diagram-perf_para)
+(constraint_diagram) edge [DataLine] (constraint_diagram-ref_wing_des)
+(ref_wing_des) edge [DataLine] (ref_wing_des-tail_size)
+% Vertical edges
+(constraint_diagram-perf_para) edge [DataLine] (perf_para)
+(constraint_diagram-ref_wing_des) edge [DataLine] (ref_wing_des)
+(ref_wing_des-tail_size) edge [DataLine] (tail_size)
+(tail_size) edge [DataLine] (output_tail_size)
+(fuse_size) edge [DataLine] (output_fuse_size);
+\end{pgfonlayer}
+
+\end{tikzpicture}
