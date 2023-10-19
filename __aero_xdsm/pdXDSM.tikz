@@ -20,58 +20,74 @@
 %Row 0
 &
 &
+\node [DataIO] (output_perf_para) {$\text{Initial Guesses}$};&
 &
 \node [DataIO,stack] (output_tail_size) {$\begin{array}{c}\text{Tail Config from Baseline} \\ \bar{V}_H, \bar{V}_V, S_{h}, S_{v}, l_{opt},\text{etc}\end{array}$};&
-\node [DataIO,stack] (output_fuse_size) {$\begin{array}{c}\text{Battery Volume} \\ \text{Fuse Config from Baseline} \\ \text{Mission Specific Requirments}\end{array}$};&
+\node [DataIO,stack] (output_fuse_size) {$\begin{array}{c}\text{Payload Dimensions} \\ \text{Design Requirements/Constraints} \\ \text{Mission Specific Requirements}\end{array}$};&
 &
 \\
 %Row 1
-\node [Function] (constraint_diagram) {$Constraint \; Diagram$};&
-\node [DataInter] (constraint_diagram-perf_para) {$E_{TO}$};&
-\node [DataInter] (constraint_diagram-ref_wing_des) {$S_{ref}, T, P$};&
+&
+\node [Function] (conceptial_design) {$Conceptual \; Design$};&
+\node [DataInter] (conceptial_design-perf_para) {$W_{TO}$};&
+\node [DataInter] (conceptial_design-ref_wing_des) {$S_{ref}, T, P, C_{L_{max}}$};&
 &
 &
 &
 \\
 %Row 2
 &
-\node [Function] (perf_para) {$Performance \; Parameters$};&
 &
-&
+\node [Function] (perf_para) {$Performance \; Analysis$};&
+\node [DataInter] (perf_para-ref_wing_des) {$Design \ Requirements$};&
+\node [DataInter] (perf_para-tail_size) {$\text{Aircraft CG}$};&
 &
 &
 \\
 %Row 3
 &
 &
-\node [Function] (ref_wing_des) {$Refined \; Wing \; Design$};&
-\node [DataInter] (ref_wing_des-tail_size) {$C_{L_{C}}$};&
-&
-&
+\node [DataInter] (ref_wing_des-perf_para) {$\text{Stability Analysis}$};&
+\node [Function] (ref_wing_des) {$Wing \ Sizing$};&
+\node [DataInter] (ref_wing_des-tail_size) {$C_{L_{C}}, C_{m}, MAC, i_w$};&
+\node [DataInter] (ref_wing_des-fuse_size) {$\text{Wing Placement}$};&
+\node [DataInter] (ref_wing_des-UAV_geom) {$Wing \ Geometry$};&
 \\
 %Row 4
 &
 &
+\node [DataInter] (tail_size-perf_para) {$\text{Stability Analysis}$};&
 &
 \node [Function] (tail_size) {$Tail \; Sizing$};&
-&
-&
+\node [DataInter] (tail_size-fuse_size) {$Tail \ Placement, L_f$};&
+\node [DataInter] (tail_size-UAV_geom) {$Tail\ Geometry$};&
 \\
 %Row 5
 &
 &
+\node [DataInter] (fuse_size-perf_para) {$C_{L_{UAV}}, C_{D_{UAV}}$};&
 &
 &
 \node [Function] (fuse_size) {$Fuselage \; Sizing$};&
-&
+\node [DataInter] (fuse_size-UAV_geom) {$Fuselage\ Geometry$};&
 \\
 %Row 6
+\node [DataIO] (left_output_UAV_geom) {$Outer \ Mold \ Line $};&
+&
+\node [DataInter] (UAV_geom-perf_para) {$\text{Revised Requirements}$};&
+\node [DataInter] (UAV_geom-ref_wing_des) {$UAV \ Lift $};&
+&
+&
+\node [Function] (UAV_geom) {$Preliminary \ Design$};&
+\\
+%Row 7
 &
 &
 &
 &
 &
-\node [Function] (UAV_geom) {$UAV \; Configuration$};&
+&
+&
 \\
 };
 
@@ -81,15 +97,43 @@
 \begin{pgfonlayer}{data}
 \path
 % Horizontal edges
-(constraint_diagram) edge [DataLine] (constraint_diagram-perf_para)
-(constraint_diagram) edge [DataLine] (constraint_diagram-ref_wing_des)
+(conceptial_design) edge [DataLine] (conceptial_design-perf_para)
+(perf_para) edge [DataLine] (perf_para-tail_size)
+(conceptial_design) edge [DataLine] (conceptial_design-ref_wing_des)
 (ref_wing_des) edge [DataLine] (ref_wing_des-tail_size)
+(ref_wing_des) edge [DataLine] (ref_wing_des-fuse_size)
+(tail_size) edge [DataLine] (tail_size-fuse_size)
+(ref_wing_des) edge [DataLine] (ref_wing_des-perf_para)
+(tail_size) edge [DataLine] (tail_size-perf_para)
+(UAV_geom) edge [DataLine] (UAV_geom-perf_para)
+(fuse_size) edge [DataLine] (fuse_size-UAV_geom)
+(fuse_size) edge [DataLine] (fuse_size-perf_para)
+(perf_para) edge [DataLine] (perf_para-ref_wing_des)
+(UAV_geom) edge [DataLine] (UAV_geom-ref_wing_des)
+(ref_wing_des) edge [DataLine] (ref_wing_des-UAV_geom)
+(tail_size) edge [DataLine] (tail_size-UAV_geom)
+(fuse_size) edge [DataLine] (fuse_size-UAV_geom)
+(UAV_geom) edge [DataLine] (left_output_UAV_geom)
 % Vertical edges
-(constraint_diagram-perf_para) edge [DataLine] (perf_para)
-(constraint_diagram-ref_wing_des) edge [DataLine] (ref_wing_des)
+(conceptial_design-perf_para) edge [DataLine] (perf_para)
+(perf_para-tail_size) edge [DataLine] (tail_size)
+(conceptial_design-ref_wing_des) edge [DataLine] (ref_wing_des)
 (ref_wing_des-tail_size) edge [DataLine] (tail_size)
+(ref_wing_des-fuse_size) edge [DataLine] (fuse_size)
+(tail_size-fuse_size) edge [DataLine] (fuse_size)
+(ref_wing_des-perf_para) edge [DataLine] (perf_para)
+(tail_size-perf_para) edge [DataLine] (perf_para)
+(UAV_geom-perf_para) edge [DataLine] (perf_para)
+(fuse_size-UAV_geom) edge [DataLine] (UAV_geom)
+(fuse_size-perf_para) edge [DataLine] (perf_para)
+(perf_para-ref_wing_des) edge [DataLine] (ref_wing_des)
+(UAV_geom-ref_wing_des) edge [DataLine] (ref_wing_des)
+(ref_wing_des-UAV_geom) edge [DataLine] (UAV_geom)
+(tail_size-UAV_geom) edge [DataLine] (UAV_geom)
+(fuse_size-UAV_geom) edge [DataLine] (UAV_geom)
 (tail_size) edge [DataLine] (output_tail_size)
-(fuse_size) edge [DataLine] (output_fuse_size);
+(fuse_size) edge [DataLine] (output_fuse_size)
+(perf_para) edge [DataLine] (output_perf_para);
 \end{pgfonlayer}
 
 \end{tikzpicture}
