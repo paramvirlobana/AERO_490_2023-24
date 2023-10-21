@@ -1,0 +1,67 @@
+
+                       * * * * * * * * * * * * * * * * * * * *
+                       * * * * * * * * * * * * * * * * * * * *
+                       * *                                 * *
+                       * *           AERODYNAMICS          * *
+                       * *            AERO 490             * *
+                       * *                                 * *
+                       * *       Concordia University      * *
+                       * *                                 * *
+                       * *                                 * *
+                       * *                                 * *
+                       * *          Version 1.0            * *
+                       * *                                 * *
+                       * *              Intel              * *
+                       * *       MODEL ASUS - Paramvir     * *
+                       * *         Windows 11 Home         * *
+                       * *                                 * *
+                       * * * * * * * * * * * * * * * * * * * *
+                       * * * * * * * * * * * * * * * * * * * *
+
+
+The results were published on: 2023-10-21 16:45:53
+
+The following requirements are used for this analysis: 
+Parameter   	  Value	Unit
+MTOW        	   13.5	kg
+Cruise Speed	   22  	m^2
+Stall Speed 	   15  	m^2
+
+The air properties at cruise altitude: 
+Parameter          	         Value	Unit
+Cruise Altitude    	4000          	m
+Density            	   0.819347   	kg/m^3
+Temperature        	 262.166      	k
+Kinematic Viscosity	   2.02746e-05	m^2/s
+
+The final dimension of the wing are:
+Parameter         	Value            	Unit
+Span              	2.61995          	m
+MAC               	0.26200          	m
+Root chord        	0.26200          	m
+Tip chord         	0.26200          	m
+Surface area      	0.68641          	m^2
+Aspect ratio      	10.00000
+Tail setting angle	1.90000          	degrees
+Airfoil           	fx 63-137 (13.7%)
+
+The final dimension of the Horizontal tail are:
+Parameter         	Value     	Unit
+Span              	0.89012   	m
+MAC               	0.13352   	m
+Root chord        	0.13352   	m
+Tip chord         	0.13352   	m
+Surface area      	0.11885   	m^2
+Aspect ratio      	6.66667
+Tail setting angle	-0.17001  	degrees
+Airfoil           	S9032 (9%)
+
+The final dimension of one vertical tail are:
+Parameter   	Value     	Unit
+Span        	0.29373   	m
+MAC         	0.13352   	m
+Root chord  	0.13352   	m
+Tip chord   	0.13352   	m
+Surface area	0.03922   	m^2
+Aspect ratio	2.19996
+Airfoil     	S9032 (9%)
