@@ -18,7 +18,7 @@
                        * * * * * * * * * * * * * * * * * * * *
 
 
-The results were published on: 2023-10-22 15:20:29
+The results were published on: 2023-10-26 15:20:08
 
 The following requirements are used for this analysis: 
 Parameter   	  Value	Unit
@@ -64,6 +64,13 @@ Tip chord   	0.13528   	m
 Surface area	0.04026   	m^2
 Aspect ratio	2.19997
 Airfoil     	S9032 (9%)
+
+conventional fuselage shape 
+Parameter                      	  Value	Unit
+Maximum fuselage length (L_f)  	 0.8375	m
+Maximum fuselage diameter (D_f)	 0.25  	m
+Length to diameter ratio       	 3.35
+Kinematic Viscosity            	 3.35  	m^2/s
 
 Previous versions can be found in the following location: 
 https://liveconcordia.sharepoint.com/:f:/t/AERO490202324/Ev6V_0j9dvFLsV9PbjnZvS8BWuxUoxde4P9i4jQYlF001g?e=FL1wcD
